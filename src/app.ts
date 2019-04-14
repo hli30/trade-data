@@ -1,10 +1,11 @@
 import express from 'express';
 import mongoose from 'mongoose';
+require('dotenv').config();
 
 const app = express();
 const port = 3000;
 
-mongoose.connect('mongodb://localhost/test', {useNewUrlParser: true});
+mongoose.connect(process.env.DEV_DB_URI, {useNewUrlParser: true});
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
