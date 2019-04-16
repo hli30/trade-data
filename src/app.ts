@@ -2,6 +2,8 @@ import express from 'express';
 import mongoose from 'mongoose';
 import { fetchHeadlines } from './services/reuters.service';
 import { saveHeadlines } from './services/headline.service';
+import { ReutersTask } from './utils/scheduler/ReutersTask';
+
 require('dotenv').config();
 
 const app = express();
@@ -40,6 +42,10 @@ const fetchData = async () => {
 // }
 
 // fetchData();
+
+const scheduler = new ReutersTask(5);
+scheduler.startRepeatingTask();
+
 
 app.get('/', (req, res) => res.send('Hello World!'));
 
