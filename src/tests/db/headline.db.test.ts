@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import Headline, { IHeadline } from '../../models/headline';
+import Headline, { IHeadline } from '../../db/headline.db';
 require('dotenv').config();
 
 describe('Headline model', () => {
