@@ -18,9 +18,10 @@ const Headline = mongoose.model<IHeadline>('Headline', headlineSchema);
 export default Headline;
 
 export const bulkInsertHeadlines = async (entries) => {
+    console.log(`inserting ${entries.length} entries`);
     return await Headline.create(entries, (err, headlines) => {
         if (err) {
-            console.log('db insert error')
+            console.log(err._message)
             return err;
         };  
     });

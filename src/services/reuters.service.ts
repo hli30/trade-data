@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { saveHeadlines } from './headline.service';
 require('dotenv').config();
 
 const { REUTERS_HEADLINE_ENDPOINT, REUTERS_API, REUTERS_API_KEY } = process.env;
@@ -12,7 +11,7 @@ axios.defaults.headers.common = {
 const headlineParams = {
     country: 'us',
     category: 'business',
-    pageSize: 1
+    pageSize: 100
 };
 
 export const fetchHeadlines = async () => {
