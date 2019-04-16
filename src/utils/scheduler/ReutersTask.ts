@@ -1,14 +1,27 @@
 import { ScheduleProcessor } from "./ScheduleProcessor";
+import { fetchHeadlines } from "../../services/reuters.service";
+import { saveHeadlines } from "../../services/headline.service";
 
 export class ReutersTask extends ScheduleProcessor{
-    public interval: number;
+    //sets call per seconds according to api call limit
+    //*1000ms to convert to seconds
+    //max calls per day = ~180seconds/call
+    protected interval:number = 60 * 1000;
 
-    constructor(intervalInSeconds:number) {
+    constructor() {
         super();
-        this.interval = intervalInSeconds * 1000;
-    }
+    };
 
     task() {
-        console.log('task performed')
-    }
-}
+        fetchHeadlines()
+            .then(res => {
+                return saveHeadlines(res);
+            })
+            .then(res => {
+                console.log('data saved');
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    };
+};

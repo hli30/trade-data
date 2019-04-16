@@ -6,7 +6,8 @@ export abstract class ScheduleProcessor {
     } 
     
     startRepeatingTask():void {
-        setInterval(() => this.task(), this.interval)
+        this.task();
+        setInterval(() => this.task(), this.interval);
     }
 
     protected abstract task():void;
