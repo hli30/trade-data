@@ -1,24 +1,18 @@
 import express from 'express';
-import mongoose from 'mongoose';
 import { ReutersTask } from './utils/scheduler/ReutersTask';
-
+import { connectDb } from './db/connection';
 require('dotenv').config();
 
 const app = express();
-const port = 3001;
+const port = 3000;
 
-mongoose.connect(process.env.DEV_DB_URI, {useNewUrlParser: true});
-
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
-    console.log('connected');
-});
-
-const scheduler = new ReutersTask(5);
-scheduler.startRepeatingTask();
-
+connectDb(app);
 
 app.get('/', (req, res) => res.send('Hello World!'));
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+app.on('ready', ()=> {
+    app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+    
+    const reutersTask = new ReutersTask();
+    reutersTask.startRepeatingTask();
+});
