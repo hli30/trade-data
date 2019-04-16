@@ -11,8 +11,8 @@ const dataMapping = (data) => {
     return mappedEntry;
 };
 
-export const saveHeadlines = (data) => {
+export const saveHeadlines = async (data) => {
     let dbEntries = data.map(headline => dataMapping(headline));
-    bulkInsertHeadlines(dbEntries);
+    return await bulkInsertHeadlines(dbEntries);
 };
-    
+

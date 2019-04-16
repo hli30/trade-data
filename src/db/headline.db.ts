@@ -17,12 +17,11 @@ const headlineSchema: Schema = new Schema({
 const Headline = mongoose.model<IHeadline>('Headline', headlineSchema);
 export default Headline;
 
-export const bulkInsertHeadlines = (entries) => {
-    Headline.create(entries, (err, headlines) => {
+export const bulkInsertHeadlines = async (entries) => {
+    return await Headline.create(entries, (err, headlines) => {
         if (err) {
+            console.log('db insert error')
             return err;
         };  
     });
-
-    console.log('inserted success');
 };

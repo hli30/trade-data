@@ -1,6 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import { getHeadline } from './controllers/headline.controller';
+import { fetchHeadlines } from './services/reuters.service';
+import { saveHeadlines } from './services/headline.service';
 require('dotenv').config();
 
 const app = express();
@@ -14,7 +15,31 @@ db.once('open', function() {
     console.log('connected');
 });
 
-getHeadline();
+// TODO: refactor into a scheduled task
+const fetchData = async () => {
+    await fetchHeadlines()
+        .then(res => {
+            return saveHeadlines(res);
+        })
+        .then(res => {
+            console.log('data saved');
+        })
+        .catch(err => {
+            console.log(err);
+        });
+};
+
+// const fetchData = async () => {
+//     try {
+//         let headlines = await fetchHeadlines()
+//         await saveHeadlines(headlines)
+//     }
+//     catch (err) {
+//         console.log(err)
+//     }
+// }
+
+// fetchData();
 
 app.get('/', (req, res) => res.send('Hello World!'));
 
