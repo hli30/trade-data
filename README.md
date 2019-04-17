@@ -1,6 +1,18 @@
-## Getting Started
-- run ```npm install```
-- update .env file accordingly
-- start up mongodb ```mongod```
-- to start server in dev mode with live update run ```npm start```
-- to build for production run ```npm run build```
+## Trade-data
+A data-as-a-service personal project for scheduled data collection from third party apis. Collected data is used for personal research/analysis.
+
+Apis used: 
+- [News API](https://newsapi.org/)
+- Quandl (not yet implemented)
+
+Also this also acts as a demo project for potential employers demonstrating:
+- Use of layered architecture for easy maintenance (Route/Controller/Service/DataAccess)
+- Selected use of OOP principals
+- Networking: async/await; promises
+- And more;
+
+## Technologies
+- Typescript
+- Node.js / Express
+- MongoDB / Mongoose
+- Jest
