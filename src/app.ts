@@ -1,5 +1,5 @@
 import express from 'express';
-import { ReutersTask } from './utils/scheduler/ReutersTask';
+import { NewsApiTask } from './utils/scheduler/NewsApiTask';
 import { connectDb } from './db/connection';
 require('dotenv').config();
 
@@ -13,6 +13,6 @@ app.get('/', (req, res) => res.send('Hello World!'));
 app.on('ready', ()=> {
     app.listen(port, () => console.log(`Example app listening on port ${port}!`));
     
-    const reutersTask = new ReutersTask();
+    const reutersTask = new NewsApiTask();
     reutersTask.startRepeatingTask();
 });
