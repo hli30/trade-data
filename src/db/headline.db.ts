@@ -26,3 +26,13 @@ export const bulkInsertHeadlines = async (entries) => {
         };  
     });
 };
+
+export const findSortedNewToOldHeadlines = (numberOfRecord:number) => {
+    return Headline
+        .find()
+        .sort({publishedAt: -1})
+        .limit(numberOfRecord)
+        .exec()
+        .then(headlines => headlines)
+        .catch(err => {throw err});
+};
