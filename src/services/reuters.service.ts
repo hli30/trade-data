@@ -14,16 +14,8 @@ const headlineParams = {
     pageSize: 100
 };
 
-export const fetchHeadlines = async () => {
-    return await axios.get(headlineUri, {
-        params: headlineParams
-    })
-    .then(res => {
-        return res.data.articles;
-    })
-    .catch(err => {
-        return err.response.data;
-    });
+export const fetchHeadlines = () => {
+    return axios.get(headlineUri, {params: headlineParams})
+        .then(res => res.data.articles)
+        .catch(err => {throw err.response.data});
 };
-
-
