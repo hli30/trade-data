@@ -1,5 +1,5 @@
 ## Trade-data
-A data-as-a-service personal project for scheduled data collection from third party apis. Collected data is used for personal research/analysis.
+A database-as-a-service personal project for scheduled data collection from third party apis. Collected data is used for personal research/analysis.
 
 Apis used: 
 - [News API](https://newsapi.org/)
