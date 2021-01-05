@@ -3,7 +3,7 @@ A database-as-a-service personal project for scheduled data collection from thir
 
 Apis used: 
 - [News API](https://newsapi.org/)
-- Quandl (not yet implemented)
+- Quandl (not implemented)
 
 This also acts as a demo project for potential employers demonstrating:
 - Use of layered architecture for easy maintenance (Route/Controller/Service/DataAccess)
